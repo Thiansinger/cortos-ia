@@ -8,7 +8,7 @@ const VOCES_GRATIS = ['es-MX-Valeria', 'es-ES-Marta', 'es-MX-Alejo', 'es-MX-Gran
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Usa POST.' });
-  const { texto, voz = 'Sonrisa', motor = 'pro' } = req.body || {};
+  const { texto, voz = 'Sonrisa', motor = 'gratis' } = req.body || {};
   if (!check(req, res, motor)) return;
   if (!texto || !String(texto).trim()) return res.status(400).json({ error: 'No hay texto para convertir en voz.' });
   try {

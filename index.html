@@ -167,7 +167,7 @@ const GFEM=['es-MX-Valeria','es-ES-Marta'], GMAS=['es-MX-Alejo','es-MX-Grant','e
 const gName=v=>v.replace(/^es-(MX|ES)-/,'');
 let story=null, clips=[], musicBuf=null, actx=null;
 const ac=()=>actx||(actx=new (window.AudioContext||window.webkitAudioContext)());
-function save(){ if(!story) return; ls.set('cortos-proyecto',JSON.stringify({t:Date.now(),story,clips:clips.map(c=>({taskId:c.taskId,videoUrl:c.videoUrl,audioUrl:c.audioUrl,audioText:c.audioText,audioVoice:c.audioVoice}))})); }
+function save(){ if(!story) return; const su=u=>(u&&u.indexOf('data:')===0)?'':u; ls.set('cortos-proyecto',JSON.stringify({t:Date.now(),story,clips:clips.map(c=>({taskId:c.taskId,videoUrl:c.videoUrl,audioUrl:su(c.audioUrl),audioText:c.audioText,audioVoice:c.audioVoice}))})); }
 
 /* ---------- 1. guion ---------- */
 $('gen').onclick=async()=>{
@@ -254,7 +254,7 @@ async function makeVoice(i){
   if(!c.audioUrl||c.audioText!==e.texto||c.audioVoice!==voz){
     const r=await api('/api/voz',{texto:e.texto,voz,motor:motor()}); c.audioUrl=r.url; c.audioText=e.texto; c.audioVoice=voz; save();
   }
-  const blob=await getFile(c.audioUrl);
+  const blob=c.audioUrl.startsWith('data:')?await(await fetch(c.audioUrl)).blob():await getFile(c.audioUrl);
   c.voiceBuf=await ac().decodeAudioData(await blob.arrayBuffer());
 }
 async function makeVideo(i){

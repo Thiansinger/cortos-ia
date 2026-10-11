@@ -7,7 +7,7 @@ const STYLE = ', photorealistic, cinematic film look, natural skin texture, real
 const NEG = 'cartoon, anime, illustration, 3d render, text, subtitles, watermark, logo, deformed hands, extra fingers, distorted face, blurry, low quality';
 
 export default async function handler(req, res) {
-  const motor = req.method === 'POST' ? (req.body?.motor || 'pro') : 'pro';
+  const motor = req.method === 'POST' ? (req.body?.motor || 'gratis') : 'gratis';
   if (!check(req, res, motor)) return;
   try {
     if (req.method === 'POST') {

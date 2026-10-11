@@ -12,7 +12,7 @@ function parseJSON(t) {
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Usa POST.' });
-  const { idea, escenas = 5, tono = 'automático', motor = 'pro' } = req.body || {};
+  const { idea, escenas = 5, tono = 'automático', motor = 'gratis' } = req.body || {};
   if (!check(req, res, motor)) return;
   if (!idea || !String(idea).trim()) return res.status(400).json({ error: 'Escribe una idea primero.' });
   const n = Math.max(2, Math.min(10, parseInt(escenas, 10) || 5));
