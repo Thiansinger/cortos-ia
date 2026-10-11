@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/guion.js": { "maxDuration": 60 },
+    "api/voz.js": { "maxDuration": 60 },
+    "api/video.js": { "maxDuration": 30 }
+  }
+}

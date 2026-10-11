@@ -1,0 +1,8 @@
+{
+  "name": "cortos-ia",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Plataforma de cortos realistas con IA (Alibaba Wan + Qwen)",
+  "engines": { "node": ">=18" }
+}
